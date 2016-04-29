@@ -68,7 +68,8 @@ public class LivrosResources {
 	}
 	
 	@RequestMapping(value= "/{id}/comentarios", method = RequestMethod.POST)
-	public ResponseEntity<Void> adicionarComentario(@PathVariable("id") Long livroId, @RequestBody Comentario comentario) {
+	public ResponseEntity<Void> adicionarComentario(@PathVariable("id") Long livroId, 
+			@RequestBody Comentario comentario) {
 		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		

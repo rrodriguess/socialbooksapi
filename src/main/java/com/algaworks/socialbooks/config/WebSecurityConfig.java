@@ -7,21 +7,22 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 @EnableWebSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
-	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
-		auth.inMemoryAuthentication()
-			.withUser("algaworks")
-			.password("s3nh4")
-			.roles("USER");
+	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+		auth.inMemoryAuthentication().withUser("algaworks").password("s3nh4").roles("USER");
 	}
 	
-	protected void configue(HttpSecurity http) throws Exception{
+	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 			.antMatchers("/h2-console/**").permitAll()
-			.anyRequest().authenticated()
-			.and().httpBasic()
-			.and().csrf().disable();
+			.anyRequest()
+			.authenticated()
+			.and()
+				.httpBasic()
+			.and()
+				.csrf().disable();
 	}
+
 }
